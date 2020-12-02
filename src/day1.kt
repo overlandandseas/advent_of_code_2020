@@ -7,7 +7,7 @@ fun List<Int>.combination(size: Int): MutableList<List<Int>> {
     // Not sure how to make this repeat dynamically.
     this.forEach { i ->
         this.minus(0..i).forEach { j ->
-            if(size == 2) {
+            if (size == 2) {
                 arr.add(arrayListOf(i, j))
             } else {
                 this.minus(0..j).forEach { k ->
@@ -24,25 +24,22 @@ fun withCombination(size: Int, stream: File) {
         .map { parseInt(it) }
         .combination(size)
         .find { it.sum() == 2020 }
-        ?.reduce { acc, i ->  acc * i}
+        ?.reduce { acc, i -> acc * i }
 
     println(result)
 }
 
-
-fun main () {
+fun main() {
     val stream = File("input_data/1")
     withCombination(2, stream)
     withCombination(3, stream)
 }
 
-
-
 //
 // OLD ANSWERS
 //
 
-//fun part1(stream: File) {
+// fun part1(stream: File) {
 //
 //    val numArray = stream.readLines().map { parseInt(it) }
 //
@@ -56,10 +53,10 @@ fun main () {
 //            return
 //        }
 //    }
-//}
+// }
 //
 //
-//fun part2(stream: File) {
+// fun part2(stream: File) {
 //
 //    val numArray = stream.readLines().map { parseInt(it) }
 //
@@ -76,4 +73,4 @@ fun main () {
 //        }
 //
 //    }
-//}
+// }

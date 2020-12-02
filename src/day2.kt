@@ -5,8 +5,6 @@ fun main() {
     val stream = File("input_data/2")
     part1(stream)
     part2(stream)
-
-
 }
 
 fun hasCharSafeCheck(str: String, char: Char, index: Int): Boolean {
@@ -22,18 +20,16 @@ fun part2(stream: File) {
         val char = uniqueChar[0]
 
         if (hasCharSafeCheck(password, char, first)) {
-             !hasCharSafeCheck(password, char, second)
+            !hasCharSafeCheck(password, char, second)
         } else {
             hasCharSafeCheck(password, char, second)
         }
-
     }.count()
 
     println(result)
 }
 
 fun part1(stream: File) {
-
     val result = stream.readLines().filter {
         val (minAndMax, uniqueChar, password) = it.split(' ')
 
@@ -42,7 +38,6 @@ fun part1(stream: File) {
         val numberOfTimes = password.filter { char -> char == uniqueChar[0] }.count()
 
         numberOfTimes in min..max
-
     }.count()
 
     println(result)
