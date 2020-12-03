@@ -11,7 +11,7 @@ fun hasCharSafeCheck(str: String, char: Char, index: Int): Boolean {
     return str.length >= index && str[index - 1] == char
 }
 
-fun part2(stream: File) {
+private fun part2(stream: File) {
     val result = stream.readLines().filter {
         val (positions, uniqueChar, password) = it.split(' ')
 
@@ -29,7 +29,7 @@ fun part2(stream: File) {
     println(result)
 }
 
-fun part1(stream: File) {
+private fun part1(stream: File) {
     val result = stream.readLines().filter {
         val (minAndMax, uniqueChar, password) = it.split(' ')
 

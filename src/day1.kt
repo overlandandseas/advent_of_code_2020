@@ -1,7 +1,7 @@
 import java.io.File
 import java.lang.Integer.parseInt
 
-fun List<Int>.combination(size: Int): MutableList<List<Int>> {
+private fun List<Int>.combination(size: Int): List<List<Int>> {
     val arr = mutableListOf<List<Int>>()
 
     // Not sure how to make this repeat dynamically.
