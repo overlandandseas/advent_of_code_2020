@@ -22,13 +22,43 @@ fun main() {
 }
 
 private fun part2(passports: List<HashMap<String, String>>) {
-    println(passports.count { isValidPassport(it) })
+    println(passports.count { isValidPassport2(it) })
 }
 
 private fun part1(passports: List<HashMap<String, String>>) {
     println(passports.count { hasRequiredFields(it) })
 }
 
+private fun isValidPassport2(passport: Map<String, String>): Boolean {
+    return hasRequiredFields(passport) && passport.all { (key, value) ->
+        when (key) {
+            "byr" -> value.toInt() in 1920..2002
+            "iyr" -> value.toInt() in 2010..2020
+            "eyr" -> value.toInt() in 2020..2030
+            "hgt" -> when {
+                value.contains("cm") -> {
+                    value.split("cm")[0].toInt() in 150..193
+                }
+                value.contains("in") -> {
+                    value.split("in")[0].toInt() in 59..76
+                }
+                else -> false
+            }
+            "hcl" -> value.matches("#[a-f0-9]{6}".toRegex())
+            "ecl" -> EYE_COLORS.contains(value)
+            "pid" -> value.matches("[0-9]{9}".toRegex())
+            else -> true
+        }
+    }
+}
+
+
+
+
+//
+// Longer Version
+//
+@Suppress("UNUSED_FUNCTION")
 private fun isValidPassport(passport: Map<String, String>): Boolean {
     return if (hasRequiredFields(passport)) {
         passport.all {
