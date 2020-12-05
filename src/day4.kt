@@ -58,7 +58,6 @@ private fun isValidPassport2(passport: Map<String, String>): Boolean {
 //
 // Longer Version
 //
-@Suppress("UNUSED_FUNCTION")
 private fun isValidPassport(passport: Map<String, String>): Boolean {
     return if (hasRequiredFields(passport)) {
         passport.all {
