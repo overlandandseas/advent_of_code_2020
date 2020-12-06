@@ -27,7 +27,6 @@ private fun part2(stream: File) {
 }
 
 private fun getSeatId(str: String): Int {
-
     return getRow(str) * 8 + getColumn(str)
 }
 
