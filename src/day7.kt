@@ -22,28 +22,23 @@ fun main() {
 }
 
 private fun part2(rules: Map<String, List<Pair<String, String>?>>) {
-
-    val answer = numberOfBags(rules, "shiny gold", 0)
-    println(answer)
+    println(numberForColor(rules, "shiny gold") - 1)
 }
+
+private fun numberForColor(rules: Map<String, List<Pair<String, String>?>>, color: String): Int {
+    return (rules[color] ?: error("Color: $color not found in rules")).fold(1) { acc, pair ->
+        if (pair == null) {
+            acc
+        } else {
+            acc + pair.first.toInt() * numberForColor(rules, pair.second)
+        }
+    }
+}
+
 private fun part1(rules: Map<String, List<Pair<String, String>?>>) {
 
     val answer = checkForColor(rules, "shiny gold", mutableSetOf())
     println(answer.size)
-}
-
-private fun numberOfBags(rules: Map<String, List<Pair<String, String>?>>, color: String, numberOfBags: Int): Int {
-    var bagNum = numberOfBags
-    val contents = rules[color]
-
-    contents!!.forEach { pair ->
-        if (pair != null) {
-            println("$color needs ${pair.first} ${pair.second} bag(s)")
-            bagNum += pair.first.toInt()
-            bagNum += numberOfBags(rules, pair.second, bagNum)
-        }
-    }
-    return bagNum
 }
 
 private fun checkForColor(rules: Map<String, List<Pair<String, String>?>>, color: String, colors: MutableSet<String>): MutableSet<String> {
