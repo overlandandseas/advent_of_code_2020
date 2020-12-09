@@ -25,7 +25,6 @@ private fun part1(instructions: List<Pair<String, Int>>) {
             "jmp" -> i += (amount - 1)
         }
         instructionSet.add(i)
-//        println("$inst $amount\t|$acc")
         i++
     }
 
